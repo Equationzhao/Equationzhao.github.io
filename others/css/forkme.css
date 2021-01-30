@@ -1,0 +1,61 @@
+  
+#forkme_banner_box a {
+    text-decoration: none;
+     
+  }
+  #forkme_banner_box a:hover, #forkme_banner_box a:focus {
+    text-decoration: underline;
+     
+  }
+  #forkme_banner_box{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    font-size: 13px;
+    font-weight: 700;
+    background-color: #364caf;
+    position:fixed;
+    right: 10px;
+    top: 0;
+    z-index: 9999;
+     
+  }
+  #forkme_banner_box a:focus {
+    outline-style:none;
+    -moz-outline-style: none;
+     
+  }
+  #forkme_banner_content_box{
+    display: none;
+
+  }
+    #forkme_banner_content {
+    background:  no-repeat scroll 95% 50% #74b6e9;
+    display: block;
+     padding: 10px 10px 10px 10px; 
+    color: #FFFFFF;
+    text-align: center;
+  }
+  #forkme_banner_tool{
+    border-bottom-left-radius: 10%;
+    border-bottom-right-radius: 10%;
+    padding: 5px 65px;
+    color: #FFFFFF;
+    display: block;
+    text-align: center;
+    margin-bottom: 5px;
+    
+  }
+  .drop{
+    
+    background-repeat: no-repeat;
+    display: block;
+    width: 30px;
+    height: 11px;
+    
+  }
+  .drop-down-ico{
+    background-position: 0 -13px;
+     
+  }
+  .drop-up-ico{
+    background-position: 0 0;
+  }
