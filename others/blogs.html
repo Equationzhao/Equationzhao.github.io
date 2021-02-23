@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Access-Control-Allow-Headers" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./pictures/yx.jpg" type=" image/jpg" />
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/forkme.css">
+    <title id="title"></title>
+    <style>
+    .content:after {
+    background-image:none;
+    background-color: rgb(214, 216, 218);
+    top: 3%;
+    left: 20%;
+    right: 25%;
+    bottom: 0%;
+    }
+    </style>
+    <script src="./js/blog.js"></script>
+    <script src="./js/jquery.js"></script>
+    <script src="./js/forkme.js"></script>
+    <script>
+     $(document).ready(function(){
+       $("body").forkme("Home","./Equation homepage.html");
+     });
+
+    </script>
+    <!-- 背景里的随机线条 -->
+    <strong><script color="235,255,155" opacity="1" count="50" src="./js/radomline.js" type="text/javascript" charset="utf-8"></script></strong>
+</head>
+
+<body onload="getTitle()">
+
+<div style="margin: 3% 25% 25% 23%;">
+    <div class="content"> 
+        <h1 id="passageTitle" style="color: black;">目录</h1>
+    </div>
+    <br><br><br>
+    <div id="passageBody">
+        <div id="passageLink">
+            <a href="./blogshtml/20210223.html"  class="linking">嘻嘻，第一篇博客</a>
+        </div>
+    </div>
+
+</div>
+
+</body>
