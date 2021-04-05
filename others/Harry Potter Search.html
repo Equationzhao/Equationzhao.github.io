@@ -1,0 +1,391 @@
+<h1>Harry-Potter-Search</h1>
+<h3>Paste from EquationZhao at Mon, 5 Apr 2021 10:04:32 +0000</h3>
+<div class="paste">
+<div class="paste">
+<td class="code"><div class="paste"><pre><span></span><span class="cm">/*</span>
+<span class="cm">*Copyright (c) equationzhao All Rights Reserved.</span>
+<span class="cm">*版本号： V1.0.0</span>
+<span class="cm">*创建人： equationzhao</span>
+<span class="cm">*电子邮箱：equationzhao@foxmail.com</span>
+<span class="cm">*创建时间：2021.3.31</span>
+<span class="cm">*描述：USTB程序设计实践Ⅰ作业</span>
+<span class="cm">*Private Repository:https://github.com/Equationzhao/Harry-Potter-Search</span>
+<span class="cm">*/</span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;fstream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iomanip&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;regex&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;time.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;Windows.h&gt;</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="n">ifstream</span> <span class="n">file</span><span class="p">[</span><span class="mi">8</span><span class="p">];</span>
+<span class="k">class</span> <span class="nc">item</span><span class="p">;</span>
+<span class="kt">char</span> <span class="n">strFind</span><span class="p">[</span><span class="mi">20</span><span class="p">];</span>
+<span class="kt">int</span> <span class="n">lineNo</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">line</span><span class="p">(</span><span class="mi">50000</span><span class="p">);</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">item</span><span class="o">&gt;</span> <span class="n">Index</span><span class="p">;</span>
+
+<span class="kt">char</span> <span class="n">Exit</span><span class="p">[]</span> <span class="o">=</span> <span class="s">"exit"</span><span class="p">;</span>
+<span class="kt">char</span> <span class="n">Search</span><span class="p">[]</span> <span class="o">=</span> <span class="s">"search"</span><span class="p">;</span>
+<span class="kt">char</span> <span class="n">Goto</span><span class="p">[]</span> <span class="o">=</span> <span class="s">"goto"</span><span class="p">;</span>
+<span class="kt">char</span> <span class="n">Help</span><span class="p">[]</span> <span class="o">=</span> <span class="s">"help"</span><span class="p">;</span>
+<span class="kt">char</span> <span class="n">Clear</span><span class="p">[]</span> <span class="o">=</span> <span class="s">"clear"</span><span class="p">;</span>
+<span class="kt">char</span> <span class="n">information</span><span class="p">[]</span> <span class="o">=</span> <span class="s">"info"</span><span class="p">;</span>
+<span class="kt">char</span> <span class="n">StrictOn</span><span class="p">[]</span> <span class="o">=</span> <span class="s">"strictOn"</span><span class="p">;</span>
+<span class="kt">char</span> <span class="n">StrictOff</span><span class="p">[]</span> <span class="o">=</span> <span class="s">"strictOff"</span><span class="p">;</span>
+<span class="kt">bool</span> <span class="n">strict</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">info</span><span class="p">(</span> <span class="p">);</span>
+<span class="kt">void</span> <span class="nf">Softwareinformation</span><span class="p">(</span> <span class="p">);</span>
+<span class="kt">void</span> <span class="nf">initial</span><span class="p">(</span> <span class="p">);</span>
+<span class="kt">void</span> <span class="nf">showMenu</span><span class="p">(</span> <span class="p">);</span>
+<span class="kt">void</span> <span class="nf">search</span><span class="p">(</span> <span class="p">);</span>
+<span class="kt">void</span> <span class="nf">showTitle</span><span class="p">(</span> <span class="p">);</span>
+<span class="kt">void</span> <span class="nf">showOutcome</span><span class="p">(</span> <span class="p">);</span>
+<span class="kt">void</span> <span class="nf">GotoRecord</span><span class="p">(</span><span class="kt">int</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">);</span>
+<span class="n">string</span> <span class="nf">findChapter</span><span class="p">(</span><span class="kt">int</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">);</span>
+<span class="n">string</span> <span class="nf">findPage</span><span class="p">(</span><span class="kt">int</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">);</span>
+
+<span class="k">class</span> <span class="nc">item</span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+	<span class="n">item</span><span class="p">(</span><span class="kt">int</span> <span class="k">const</span> <span class="n">pLine</span><span class="p">,</span><span class="n">string</span> <span class="k">const</span> <span class="n">pChapter</span><span class="p">,</span><span class="n">string</span> <span class="k">const</span> <span class="n">pPage</span><span class="p">)</span> <span class="o">:</span><span class="n">line</span><span class="p">(</span><span class="n">pLine</span><span class="p">),</span><span class="n">chapter</span><span class="p">(</span><span class="n">pChapter</span><span class="p">),</span><span class="n">page</span><span class="p">(</span><span class="n">pPage</span><span class="p">){</span>
+		<span class="n">idGenerator</span><span class="o">++</span><span class="p">;</span>
+		<span class="n">id</span> <span class="o">=</span> <span class="n">idGenerator</span><span class="p">;</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">line</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">){</span>
+			<span class="n">found</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="k">else</span><span class="p">{</span>
+			<span class="n">found</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+			<span class="k">if</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">line</span> <span class="o">&amp;&amp;</span> <span class="n">line</span> <span class="o">&lt;</span> <span class="mi">78</span><span class="p">){</span>
+				<span class="n">book</span> <span class="o">=</span> <span class="s">"J.K.Rowling - HP 0 - Harry Potter Prequel"</span><span class="p">;</span>
+			<span class="p">}</span>
+			<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="mi">78</span> <span class="o">&lt;=</span> <span class="n">line</span> <span class="o">&amp;&amp;</span> <span class="n">line</span> <span class="o">&lt;</span> <span class="mi">9810</span><span class="p">){</span>
+				<span class="n">book</span> <span class="o">=</span> <span class="s">"HP7--Harry_Potter_and_the_Deathly_Hallows_Book_7"</span><span class="p">;</span>
+			<span class="p">}</span>
+			<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="mi">9810</span> <span class="o">&lt;=</span> <span class="n">line</span> <span class="o">&amp;&amp;</span> <span class="n">line</span> <span class="o">&lt;</span> <span class="mi">19814</span><span class="p">){</span>
+				<span class="n">book</span> <span class="o">=</span> <span class="s">"J.K.Rowling - HP 3 - Harry Potter and the Prisoner of Azkaban"</span><span class="p">;</span>
+			<span class="p">}</span>
+			<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="mi">19814</span> <span class="o">&lt;=</span> <span class="n">line</span> <span class="o">&amp;&amp;</span> <span class="n">line</span> <span class="o">&lt;</span> <span class="mi">24162</span><span class="p">){</span>
+				<span class="n">book</span> <span class="o">=</span> <span class="s">"HP2--Harry_Potter_and_the_Chamber_of_Secrets_Book_2"</span><span class="p">;</span>
+			<span class="p">}</span>
+			<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="mi">24162</span> <span class="o">&lt;=</span> <span class="n">line</span> <span class="o">&amp;&amp;</span> <span class="n">line</span> <span class="o">&lt;</span> <span class="mi">24867</span><span class="p">){</span>
+				<span class="n">book</span> <span class="o">=</span> <span class="s">"J.K.Rowling - Quidditch Through the Ages"</span><span class="p">;</span>
+			<span class="p">}</span>
+			<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="mi">24867</span> <span class="o">&lt;=</span> <span class="n">line</span> <span class="o">&amp;&amp;</span> <span class="n">line</span> <span class="o">&lt;</span> <span class="mi">26004</span><span class="p">){</span>
+				<span class="n">book</span> <span class="o">=</span> <span class="s">"J.K.Rowling - The Tales of Beedle the Bard"</span><span class="p">;</span>
+			<span class="p">}</span>
+			<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="mi">26004</span> <span class="o">&lt;=</span> <span class="n">line</span> <span class="o">&amp;&amp;</span> <span class="n">line</span> <span class="o">&lt;</span> <span class="mi">39616</span><span class="p">){</span>
+				<span class="n">book</span> <span class="o">=</span> <span class="s">"J.K.Rowling - HP 6 - Harry Potter and the Half - Blood Prince"</span><span class="p">;</span>
+			<span class="p">}</span>
+
+			<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="mi">39616</span> <span class="o">&lt;=</span> <span class="n">line</span> <span class="o">&amp;&amp;</span> <span class="n">line</span> <span class="o">&lt;</span> <span class="mi">49447</span><span class="p">){</span>
+				<span class="n">book</span> <span class="o">=</span> <span class="s">"J.K.Rowling - HP 4 - Harry Potter and the Goblet of Fire"</span><span class="p">;</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="o">~</span><span class="n">item</span><span class="p">(</span> <span class="p">){</span>
+	<span class="p">}</span>
+	<span class="kt">void</span> <span class="n">setPage</span><span class="p">(</span><span class="n">string</span> <span class="k">const</span> <span class="n">pPage</span><span class="p">){</span>
+		<span class="n">page</span> <span class="o">=</span> <span class="n">pPage</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="kt">void</span> <span class="n">setChapter</span><span class="p">(</span><span class="n">string</span> <span class="k">const</span> <span class="n">pChapter</span><span class="p">){</span>
+		<span class="n">chapter</span> <span class="o">=</span> <span class="n">pChapter</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="kt">void</span> <span class="n">setLine</span><span class="p">(</span><span class="kt">int</span> <span class="k">const</span> <span class="o">&amp;</span><span class="n">L</span><span class="p">){</span>
+		<span class="n">line</span> <span class="o">=</span> <span class="n">L</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">static</span> <span class="kt">void</span> <span class="n">setName</span><span class="p">(</span><span class="n">string</span> <span class="k">const</span> <span class="n">pName</span><span class="p">){</span>
+		<span class="n">name</span> <span class="o">=</span> <span class="n">pName</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="kt">int</span> <span class="n">getLine</span><span class="p">(</span> <span class="p">){</span>
+		<span class="k">return</span> <span class="n">line</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="n">string</span> <span class="n">getPaper</span><span class="p">(</span> <span class="p">)</span> <span class="k">const</span><span class="p">{</span>
+		<span class="k">return</span> <span class="n">page</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="n">string</span> <span class="n">getChapter</span><span class="p">(</span> <span class="p">)</span> <span class="k">const</span><span class="p">{</span>
+		<span class="k">return</span> <span class="n">chapter</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="n">string</span> <span class="n">getBook</span><span class="p">(</span> <span class="p">){</span>
+		<span class="k">return</span> <span class="n">book</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">static</span> <span class="n">string</span> <span class="n">getName</span><span class="p">(</span> <span class="p">){</span>
+		<span class="k">return</span> <span class="n">name</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">static</span> <span class="kt">bool</span> <span class="n">getFound</span><span class="p">(</span> <span class="p">){</span>
+		<span class="k">return</span> <span class="n">found</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="kt">void</span> <span class="n">output</span><span class="p">(</span> <span class="p">)</span><span class="k">const</span><span class="p">{</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">left</span> <span class="o">&lt;&lt;</span> <span class="n">id</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\t</span><span class="s">"</span> <span class="o">&lt;&lt;</span> <span class="n">name</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\t\t</span><span class="s">"</span> <span class="o">&lt;&lt;</span> <span class="n">page</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\t</span><span class="s">"</span> <span class="o">&lt;&lt;</span> <span class="n">setw</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">chapter</span> <span class="o">&lt;&lt;</span> <span class="s">"   </span><span class="se">\t</span><span class="s">"</span> <span class="o">&lt;&lt;</span> <span class="n">book</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">static</span> <span class="kt">void</span> <span class="n">reset</span><span class="p">(</span> <span class="p">){</span>
+		<span class="n">idGenerator</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+		<span class="n">name</span> <span class="o">=</span> <span class="s">""</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+	<span class="kt">int</span> <span class="n">id</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">line</span><span class="p">;</span>
+	<span class="n">string</span> <span class="n">page</span><span class="p">;</span>
+	<span class="n">string</span> <span class="n">chapter</span><span class="p">;</span>
+	<span class="n">string</span> <span class="n">book</span><span class="p">;</span>
+	<span class="k">static</span> <span class="kt">bool</span> <span class="n">found</span><span class="p">;</span>
+	<span class="k">static</span> <span class="kt">int</span> <span class="n">idGenerator</span><span class="p">;</span>
+	<span class="k">static</span> <span class="n">string</span> <span class="n">name</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">bool</span> <span class="n">item</span><span class="o">::</span><span class="n">found</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">item</span><span class="o">::</span><span class="n">idGenerator</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">string</span> <span class="n">item</span><span class="o">::</span><span class="n">name</span> <span class="o">=</span> <span class="s">"unknown"</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">info</span><span class="p">(</span> <span class="p">){</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"哈利波特书籍检索系统v1.0.0</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">Softwareinformation</span><span class="p">(</span> <span class="p">){</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"* Copyright (c) equationzhao All Rights Reserved.</span><span class="se">\n</span><span class="s">"</span>
+		<span class="o">&lt;&lt;</span> <span class="s">"* 版本号： V1.0.0</span><span class="se">\n</span><span class="s">"</span>
+		<span class="o">&lt;&lt;</span> <span class="s">"* 创建人： equationzhao</span><span class="se">\n</span><span class="s">"</span>
+		<span class="o">&lt;&lt;</span> <span class="s">"* 电子邮箱：equationzhao@foxmail.com</span><span class="se">\n</span><span class="s">"</span>
+		<span class="o">&lt;&lt;</span> <span class="s">"* 创建时间：20210331</span><span class="se">\n</span><span class="s">"</span>
+		<span class="o">&lt;&lt;</span> <span class="s">"* 描述：USTB程序设计实践Ⅰ作业</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">showInfo</span><span class="p">(</span> <span class="p">){</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"输入</span><span class="se">\"</span><span class="s">search NAME</span><span class="se">\"</span><span class="s">,查询为</span><span class="se">\"</span><span class="s">NAME</span><span class="se">\"</span><span class="s">的人名/地名</span><span class="se">\n</span><span class="s">输入</span><span class="se">\"</span><span class="s">goto N</span><span class="se">\"</span><span class="s">,查询第N条记录</span><span class="se">\n</span><span class="s">输入</span><span class="se">\"</span><span class="s">exit</span><span class="se">\"</span><span class="s">退出查询系统</span><span class="se">\n</span><span class="s">"</span>
+		<span class="o">&lt;&lt;</span> <span class="s">"使用clear命令清除屏幕上的内容</span><span class="se">\n</span><span class="s">使用help命令以显示此提示</span><span class="se">\n</span><span class="s">使用info命令显示软件相关信息</span><span class="se">\n</span><span class="s">使用strictOn/strictOff命令启用/关闭严格模式</span><span class="se">\n\n</span><span class="s">"</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">showRemind</span><span class="p">(</span> <span class="p">){</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"注意:</span><span class="se">\n\t</span><span class="s">1.请不要在没有查询过时使用goto,会造成错误</span><span class="se">\n\t</span><span class="s">2.本软件对空格敏感,例如</span><span class="se">\"</span><span class="s">Harry Potter</span><span class="se">\"</span><span class="s">与</span><span class="se">\"</span><span class="s">Harry   Potter </span><span class="se">\"</span><span class="s">是不同的</span><span class="se">\n</span><span class="s">"</span>
+		<span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\t</span><span class="s">3.本软件默认关闭严格搜索模式,在检索人名/地名时影响较小,但在检索其他字符串时可能存在误差</span><span class="se">\n\t</span><span class="s">  若要启用/关闭严格模式,请使用strictOn/strictOff命令</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">initial</span><span class="p">(</span> <span class="p">){</span>
+	<span class="n">file</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">open</span><span class="p">(</span><span class="s">"./textSource/hp1.txt"</span><span class="p">,</span><span class="n">std</span><span class="o">::</span><span class="n">ifstream</span><span class="o">::</span><span class="n">in</span><span class="p">);</span>
+	<span class="n">file</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">open</span><span class="p">(</span><span class="s">"./textSource/hp2.txt"</span><span class="p">,</span><span class="n">std</span><span class="o">::</span><span class="n">ifstream</span><span class="o">::</span><span class="n">in</span><span class="p">);</span>
+	<span class="n">file</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">open</span><span class="p">(</span><span class="s">"./textSource/hp3.txt"</span><span class="p">,</span><span class="n">std</span><span class="o">::</span><span class="n">ifstream</span><span class="o">::</span><span class="n">in</span><span class="p">);</span>
+	<span class="n">file</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="n">open</span><span class="p">(</span><span class="s">"./textSource/hp4.txt"</span><span class="p">,</span><span class="n">std</span><span class="o">::</span><span class="n">ifstream</span><span class="o">::</span><span class="n">in</span><span class="p">);</span>
+	<span class="n">file</span><span class="p">[</span><span class="mi">4</span><span class="p">].</span><span class="n">open</span><span class="p">(</span><span class="s">"./textSource/hp5.txt"</span><span class="p">,</span><span class="n">std</span><span class="o">::</span><span class="n">ifstream</span><span class="o">::</span><span class="n">in</span><span class="p">);</span>
+	<span class="n">file</span><span class="p">[</span><span class="mi">5</span><span class="p">].</span><span class="n">open</span><span class="p">(</span><span class="s">"./textSource/hp6.txt"</span><span class="p">,</span><span class="n">std</span><span class="o">::</span><span class="n">ifstream</span><span class="o">::</span><span class="n">in</span><span class="p">);</span>
+	<span class="n">file</span><span class="p">[</span><span class="mi">6</span><span class="p">].</span><span class="n">open</span><span class="p">(</span><span class="s">"./textSource/hp7.txt"</span><span class="p">,</span><span class="n">std</span><span class="o">::</span><span class="n">ifstream</span><span class="o">::</span><span class="n">in</span><span class="p">);</span>
+	<span class="n">file</span><span class="p">[</span><span class="mi">7</span><span class="p">].</span><span class="n">open</span><span class="p">(</span><span class="s">"./textSource/hp8.txt"</span><span class="p">,</span><span class="n">std</span><span class="o">::</span><span class="n">ifstream</span><span class="o">::</span><span class="n">in</span><span class="p">);</span>
+	<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+		<span class="k">while</span> <span class="p">(</span><span class="n">getline</span><span class="p">(</span><span class="n">file</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">line</span><span class="p">[</span><span class="n">lineNo</span><span class="p">])){</span>
+			<span class="c1">//cout &lt;&lt; line[lineNo] &lt;&lt; endl;</span>
+			<span class="n">lineNo</span><span class="o">++</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="n">file</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">close</span><span class="p">(</span> <span class="p">);</span>
+		<span class="n">i</span><span class="o">++</span><span class="p">;</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">8</span><span class="p">){</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">search</span><span class="p">(</span> <span class="p">){</span>
+	<span class="kt">size_t</span> <span class="n">len</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">strFind</span><span class="p">);</span>
+	<span class="kt">clock_t</span> <span class="n">start</span><span class="p">,</span><span class="n">end</span><span class="p">;</span>
+	<span class="n">start</span> <span class="o">=</span> <span class="n">clock</span><span class="p">(</span> <span class="p">);</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">lineNo</span><span class="p">;</span> <span class="n">n</span><span class="o">++</span><span class="p">){</span>
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">line</span><span class="p">[</span><span class="n">n</span><span class="p">].</span><span class="n">size</span><span class="p">(</span> <span class="p">);</span> <span class="n">j</span><span class="o">++</span><span class="p">){</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">strFind</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">line</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">j</span><span class="p">]){</span>
+				<span class="kt">int</span> <span class="n">flage</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+				<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">len</span><span class="p">;</span> <span class="n">k</span><span class="o">++</span><span class="p">){</span>
+					<span class="k">if</span> <span class="p">(</span><span class="n">strFind</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">!=</span> <span class="n">line</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="n">k</span><span class="p">]){</span>
+						<span class="n">flage</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+						<span class="k">break</span><span class="p">;</span>
+					<span class="p">}</span>
+				<span class="p">}</span>
+				<span class="k">if</span> <span class="p">(</span><span class="n">flage</span><span class="p">){</span>
+					<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">strict</span><span class="p">){</span>
+						<span class="n">j</span> <span class="o">+=</span> <span class="n">len</span><span class="p">;</span>
+					<span class="p">}</span>
+					<span class="n">item</span> <span class="n">newItem</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">findChapter</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="n">findPage</span><span class="p">(</span><span class="n">n</span><span class="p">));</span>
+					<span class="n">Index</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">newItem</span><span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="n">end</span> <span class="o">=</span> <span class="n">clock</span><span class="p">(</span> <span class="p">);</span>
+	<span class="n">showOutcome</span><span class="p">(</span> <span class="p">);</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"查询用时"</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="kt">double</span><span class="p">)(</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span> <span class="p">)</span> <span class="o">/</span> <span class="mi">1000</span> <span class="o">&lt;&lt;</span> <span class="s">"秒"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+	<span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">string</span> <span class="nf">findChapter</span><span class="p">(</span><span class="kt">int</span> <span class="k">const</span> <span class="o">&amp;</span><span class="n">L</span><span class="p">){</span>
+	<span class="c1">//chapter表示章节,且一行的字符数均小于25</span>
+	<span class="n">regex</span> <span class="n">pattern</span><span class="p">(</span><span class="s">"chapter"</span><span class="p">,</span><span class="n">regex</span><span class="o">::</span><span class="n">icase</span><span class="p">);</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">L</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">){</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">size</span><span class="p">(</span> <span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">25</span><span class="p">){</span>
+			<span class="k">continue</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="n">string</span><span class="o">::</span><span class="n">const_iterator</span> <span class="n">strB</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">begin</span><span class="p">(</span> <span class="p">);</span>
+		<span class="n">string</span><span class="o">::</span><span class="n">const_iterator</span> <span class="n">strE</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">end</span><span class="p">(</span> <span class="p">);</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">regex_search</span><span class="p">(</span><span class="n">strB</span><span class="p">,</span><span class="n">strE</span><span class="p">,</span><span class="n">pattern</span><span class="p">)){</span>
+			<span class="k">return</span> <span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="s">"unknown"</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">string</span> <span class="nf">findPage</span><span class="p">(</span><span class="kt">int</span> <span class="k">const</span> <span class="o">&amp;</span><span class="n">L</span><span class="p">){</span>
+	<span class="c1">//数字表示页码,且一行的字符数均小于等于3</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">L</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">line</span><span class="p">.</span><span class="n">size</span><span class="p">(</span> <span class="p">);</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">size</span><span class="p">(</span> <span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">4</span><span class="p">){</span>
+			<span class="k">continue</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">isdigit</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">])){</span>
+			<span class="k">return</span> <span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="s">"unknown"</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">GotoRecord</span><span class="p">(</span><span class="kt">int</span> <span class="k">const</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">){</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&gt;</span> <span class="n">Index</span><span class="p">.</span><span class="n">size</span><span class="p">(</span> <span class="p">)</span> <span class="o">||</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"No existed record! :-(</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+		<span class="k">return</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">else</span><span class="p">{</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"第"</span> <span class="o">&lt;&lt;</span> <span class="n">n</span> <span class="o">&lt;&lt;</span> <span class="s">"条记录"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+		<span class="kt">int</span> <span class="n">tempLine</span> <span class="o">=</span> <span class="n">Index</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">].</span><span class="n">getLine</span><span class="p">(</span> <span class="p">);</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">tempLine</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+			<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="o">&lt;&lt;</span> <span class="n">line</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="o">&lt;&lt;</span> <span class="n">line</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">tempLine</span> <span class="o">==</span> <span class="n">line</span><span class="p">.</span><span class="n">size</span><span class="p">(</span> <span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">){</span>
+			<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">line</span><span class="p">[</span><span class="n">tempLine</span> <span class="o">-</span> <span class="mi">4</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="o">&lt;&lt;</span> <span class="n">line</span><span class="p">[</span><span class="n">tempLine</span> <span class="o">-</span> <span class="mi">2</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="o">&lt;&lt;</span> <span class="n">line</span><span class="p">[</span><span class="n">tempLine</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="k">else</span><span class="p">{</span>
+			<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">line</span><span class="p">[</span><span class="n">tempLine</span> <span class="o">-</span> <span class="mi">2</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="o">&lt;&lt;</span> <span class="n">line</span><span class="p">[</span><span class="n">tempLine</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="o">&lt;&lt;</span> <span class="n">line</span><span class="p">[</span><span class="n">tempLine</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">showTitle</span><span class="p">(</span> <span class="p">){</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">left</span> <span class="o">&lt;&lt;</span> <span class="s">"序号"</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\t</span><span class="s">"</span> <span class="o">&lt;&lt;</span> <span class="s">"人名/地名"</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\t\t</span><span class="s">"</span> <span class="o">&lt;&lt;</span> <span class="s">"页码"</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\t</span><span class="s">"</span>
+		<span class="o">&lt;&lt;</span> <span class="n">setw</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">"章节"</span> <span class="o">&lt;&lt;</span> <span class="s">"   </span><span class="se">\t</span><span class="s">"</span> <span class="o">&lt;&lt;</span> <span class="s">"书名"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+	<span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">showOutcome</span><span class="p">(</span> <span class="p">){</span>
+	<span class="n">system</span><span class="p">(</span><span class="s">"cls"</span><span class="p">);</span>
+	<span class="n">info</span><span class="p">(</span> <span class="p">);</span>
+	<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">item</span><span class="o">::</span><span class="n">getFound</span><span class="p">(</span> <span class="p">)){</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"没有查询到~~"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+		<span class="k">return</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="n">showTitle</span><span class="p">(</span> <span class="p">);</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">Index</span><span class="p">.</span><span class="n">size</span><span class="p">(</span> <span class="p">);</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+		<span class="n">Index</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">output</span><span class="p">(</span> <span class="p">);</span>
+	<span class="p">}</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"共查询到"</span> <span class="o">&lt;&lt;</span> <span class="n">Index</span><span class="p">.</span><span class="n">size</span><span class="p">(</span> <span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">"条记录"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+	<span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">showMenu</span><span class="p">(</span> <span class="p">){</span>
+	<span class="kt">bool</span> <span class="n">flage</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+	<span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+		<span class="kt">char</span> <span class="n">option</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+		<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">option</span><span class="p">;</span>
+		<span class="n">cin</span><span class="p">.</span><span class="n">ignore</span><span class="p">(</span> <span class="p">);</span><span class="c1">//For cin.getline() will recive '\n'</span>
+		<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">strcmp</span><span class="p">(</span><span class="n">option</span><span class="p">,</span><span class="n">Search</span><span class="p">)){</span>
+			<span class="n">Index</span><span class="p">.</span><span class="n">clear</span><span class="p">(</span> <span class="p">);</span>
+			<span class="n">item</span><span class="o">::</span><span class="n">reset</span><span class="p">(</span> <span class="p">);</span>
+			<span class="n">cin</span><span class="p">.</span><span class="n">getline</span><span class="p">(</span><span class="n">strFind</span><span class="p">,</span><span class="mi">20</span><span class="p">);</span>
+			<span class="n">item</span><span class="o">::</span><span class="n">setName</span><span class="p">(</span><span class="n">strFind</span><span class="p">);</span>
+			<span class="n">flage</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+			<span class="n">search</span><span class="p">(</span> <span class="p">);</span>
+		<span class="p">}</span>
+		<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">strcmp</span><span class="p">(</span><span class="n">option</span><span class="p">,</span><span class="n">Goto</span><span class="p">)){</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">flage</span><span class="p">){</span>
+				<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"No existed record! :-(</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+				<span class="n">cin</span><span class="p">.</span><span class="n">ignore</span><span class="p">(</span> <span class="p">);</span>
+				<span class="k">continue</span><span class="p">;</span>
+			<span class="p">}</span>
+			<span class="kt">char</span> <span class="n">charNum</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+			<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">charNum</span><span class="p">;</span>
+			<span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+			<span class="kt">size_t</span> <span class="n">flage</span> <span class="o">=</span> <span class="nb">false</span><span class="p">,</span><span class="n">lenChar</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">charNum</span><span class="p">);</span>
+			<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">lenChar</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+				<span class="k">if</span> <span class="p">(</span><span class="n">isdigit</span><span class="p">(</span><span class="n">charNum</span><span class="p">[</span><span class="n">i</span><span class="p">])){</span>
+					<span class="n">n</span> <span class="o">*=</span> <span class="mi">10</span><span class="p">;</span>
+					<span class="n">n</span> <span class="o">+=</span> <span class="n">charNum</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="sc">'0'</span><span class="p">;</span>
+					<span class="n">flage</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+				<span class="p">}</span>
+				<span class="k">else</span><span class="p">{</span>
+					<span class="n">flage</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+					<span class="k">break</span><span class="p">;</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">flage</span><span class="p">){</span>
+				<span class="n">GotoRecord</span><span class="p">(</span><span class="n">n</span><span class="p">);</span><span class="c1">//跳转到第n条记录</span>
+			<span class="p">}</span>
+			<span class="k">else</span><span class="p">{</span>
+				<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"NaN</span><span class="se">\n</span><span class="s">Please input a valid NUMBER!</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+		<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">strcmp</span><span class="p">(</span><span class="n">option</span><span class="p">,</span><span class="n">Exit</span><span class="p">)){</span>
+			<span class="k">return</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">strcmp</span><span class="p">(</span><span class="n">option</span><span class="p">,</span><span class="n">Clear</span><span class="p">)){</span>
+			<span class="n">system</span><span class="p">(</span><span class="s">"cls"</span><span class="p">);</span>
+		<span class="p">}</span>
+		<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">strcmp</span><span class="p">(</span><span class="n">option</span><span class="p">,</span><span class="n">information</span><span class="p">)){</span>
+			<span class="n">Softwareinformation</span><span class="p">(</span> <span class="p">);</span>
+		<span class="p">}</span>
+		<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">strcmp</span><span class="p">(</span><span class="n">option</span><span class="p">,</span><span class="n">Help</span><span class="p">)){</span>
+			<span class="n">showInfo</span><span class="p">(</span> <span class="p">);</span>
+		<span class="p">}</span>
+		<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">strcmp</span><span class="p">(</span><span class="n">option</span><span class="p">,</span><span class="n">StrictOn</span><span class="p">)){</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">strict</span><span class="p">){</span>
+				<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"strict mode is already on!</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+			<span class="p">}</span>
+			<span class="k">else</span><span class="p">{</span>
+				<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"strict mode on</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+				<span class="n">strict</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+		<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">strcmp</span><span class="p">(</span><span class="n">option</span><span class="p">,</span><span class="n">StrictOff</span><span class="p">)){</span>
+			<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">strict</span><span class="p">){</span>
+				<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"strict mode is already off!</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+			<span class="p">}</span>
+			<span class="k">else</span><span class="p">{</span>
+				<span class="n">strict</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+				<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"strict mode off</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+		<span class="k">else</span><span class="p">{</span>
+			<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">Error</span><span class="se">\n</span><span class="s">Type in </span><span class="se">\'</span><span class="s">help</span><span class="se">\'</span><span class="s"> to get more information</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span> <span class="p">){</span>
+	<span class="n">SetConsoleTitle</span><span class="p">(</span><span class="sa">L</span><span class="s">"哈利波特书籍检索系统"</span><span class="p">);</span>
+	<span class="n">info</span><span class="p">(</span> <span class="p">);</span><span class="c1">//显示基本软件名称</span>
+	<span class="n">showInfo</span><span class="p">(</span> <span class="p">);</span><span class="c1">//显示基本操作</span>
+	<span class="n">showRemind</span><span class="p">(</span> <span class="p">);</span><span class="c1">//显示注意事项</span>
+	<span class="n">initial</span><span class="p">(</span> <span class="p">);</span><span class="c1">//初始接受文件信息并存于vector&lt;string&gt;中</span>
+	<span class="n">showMenu</span><span class="p">(</span> <span class="p">);</span><span class="c1">//显示操作</span>
+	<span class="n">Softwareinformation</span><span class="p">(</span> <span class="p">);</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">END</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></tbody></table>
+</div>
+<a class="pturl" href="https://paste.ubuntu.com/p/yGWwfjkhHd/plain/">Download as text</a>
+</div>
+
+
+
+
+		    </div>
+	    </div>
+	</div>
+
+
+
+</body></html>
