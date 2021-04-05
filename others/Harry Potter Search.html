@@ -23,7 +23,6 @@
 <span class="cp">#include</span> <span class="cpf">&lt;Windows.h&gt;</span><span class="cp"></span>
 <span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 
-<span class="n">ifstream</span> <span class="n">file</span><span class="p">[</span><span class="mi">8</span><span class="p">];</span>
 <span class="k">class</span> <span class="nc">item</span><span class="p">;</span>
 <span class="kt">char</span> <span class="n">strFind</span><span class="p">[</span><span class="mi">20</span><span class="p">];</span>
 <span class="kt">int</span> <span class="n">lineNo</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -162,6 +161,7 @@
 		<span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\t</span><span class="s">3.本软件默认关闭严格搜索模式,在检索人名/地名时影响较小,但在检索其他字符串时可能存在误差</span><span class="se">\n\t</span><span class="s">  若要启用/关闭严格模式,请使用strictOn/strictOff命令</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="kt">void</span> <span class="nf">initial</span><span class="p">(</span> <span class="p">){</span>
+	<span class="n">ifstream</span> <span class="n">*file</span><span class="p">=</span><span class="mi">new</span><span class="mi">ifstream</span><span class="mi">[</span><span class="mi">8</span><span class="mi">]</span><span class="mi">;</span>
 	<span class="n">file</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">open</span><span class="p">(</span><span class="s">"./textSource/hp1.txt"</span><span class="p">,</span><span class="n">std</span><span class="o">::</span><span class="n">ifstream</span><span class="o">::</span><span class="n">in</span><span class="p">);</span>
 	<span class="n">file</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">open</span><span class="p">(</span><span class="s">"./textSource/hp2.txt"</span><span class="p">,</span><span class="n">std</span><span class="o">::</span><span class="n">ifstream</span><span class="o">::</span><span class="n">in</span><span class="p">);</span>
 	<span class="n">file</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">open</span><span class="p">(</span><span class="s">"./textSource/hp3.txt"</span><span class="p">,</span><span class="n">std</span><span class="o">::</span><span class="n">ifstream</span><span class="o">::</span><span class="n">in</span><span class="p">);</span>
@@ -182,6 +182,7 @@
 			<span class="k">break</span><span class="p">;</span>
 		<span class="p">}</span>
 	<span class="p">}</span>
+	<span class="k">delete []file;</span>
 	<span class="k">return</span><span class="p">;</span>
 <span class="p">}</span>
 
