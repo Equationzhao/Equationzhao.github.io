@@ -10,8 +10,8 @@
                          "</div>" +
                          "</div>";
       //防止不传参数
-      text = text || "Baidu";
-      url = url || "https://www.baidu.com";
+      text = text || "github";
+      url = url || "https://github.com";
       // text1 = "Pull";
       
       //构造html
