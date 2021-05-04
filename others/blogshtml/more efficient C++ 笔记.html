@@ -1,0 +1,606 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<meta name="keywords" content="more efficient C++,C++,北京科技大学,计算机与通信工程学院,C++">
+<link rel="icon" href="../pictures/yx.jpg" type=" image/jpg" />
+<style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-fences-math .MathJax_SVG_Display, .md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: visible; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none 0s ease 0s; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-require-zoom-fix foreignobject { font-size: var(--mermaid-font-zoom); }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-math .MathJax_SVG_Display { margin-top: 8px; cursor: default; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+
+
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 30px; z-index: 3; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; overflow-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+
+/* ******************** */
+/*这篇样式基于知乎大佬LAN DU的样式，原文知乎链接：
+https://zhuanlan.zhihu.com/p/158767474
+GitHub链接：
+https://github.com/du33169/typora-theme-essay_cn
+主要改动：
+- 适配LaTeX的字体。选用像LaTeX的字体是装“哔”的重要手段。
+- 更改标题、目录和大纲的编号样式。改成1. ，1.1 ， 1.1.1 ，……这样的编号更有一种浓厚的论文感觉。
+- 二级及以下标题全部靠左，适应文章样式。后面加上大空白，适配LaTeX样式
+不足之处：
+- 仍然无法添加页眉页脚。
+适用于小论文、实验报告等对格式要求较松的情况，在不写代码的前提下装“哔”
+*/
+/* ******************** */
+/*导入字体*/
+/*这里是主要的西文字体 LM Roman 10*/
+      /*这里是代码块字体*/
+
+  /*这里是中文字体，我们导入了思源宋体、宋体。*/ 
+/*按理说宋体就够了，但是Typora宋体显示效果感人，暂时换成思源宋体*/
+    /*    */
+
+
+body{
+    /* border:1px solid bxlack; for debug */
+    padding:0 !important;
+    margin:0 !important;
+    line-height: 1.85rem;/*行距*/
+}
+/* 正文区基本属性，参照wordTeX模板设置字体大小*/
+#write {
+   font-family:'LM Roman 10',"Times New Roman",Arial, "Source Han Serif", simsun , sans-serif; 
+   font-size:11pt;
+   max-width: 21cm; /*A4标准宽度*/
+   border:1px solid #CCC ; /* 添加一个淡灰色的边框 */
+}
+/*页边距处理，模仿标准word*/
+@media screen{
+    #write{
+       padding:2.54cm 3.18cm; 
+    }
+}
+@media print{
+    #write{
+       padding:0 3.18cm !important; 
+       margin:0 !important;
+    }
+}
+@page{
+	margin:2.54cm 0; /*上下/左右 边距，参考了word的默认边距*/
+}
+
+
+#write p{
+	text-align:left;
+}
+h1,h2,h3,h4,h5,h6 {
+	font-weight:bold;
+    page-break-after:avoid !important;
+}
+
+/*basic样式采用一般的引言，具有左边框、左缩进*/
+blockquote{
+	font-family:仿宋;
+  border-left:3px solid grey;
+	padding-left:10px;
+  font-size: 11pt;
+	color: grey;
+}
+	/*border-width: 0.5pt 0;
+  border-style:solid;	这一行本来使用了上下边框*/
+/* 标题属性 */
+h1 {
+  font-family:'LM Roman 10',simsun;
+	text-align:center;
+	font-size:16pt;
+}
+h2 {
+	font-family:'LM Roman 10', 黑体; 
+	font-size:14pt;
+}
+h3 {
+	font-family:'LM Roman 10', 黑体; 
+	font-size:12pt;
+}
+h4 {
+	font-family:'LM Roman 10', 黑体; 
+	font-size:11pt;
+}
+h5 {
+	font-family:'LM Roman 10', 黑体; 
+	font-size:11pt;
+}
+
+/* 目录标题属性 */
+.md-toc-h2 {
+	font-family:'LM Roman 10',simsun;
+}
+.md-toc-h3 {
+	font-family:'LM Roman 10',simsun;
+}
+.md-toc-h4 {
+	font-family:'LM Roman 10',simsun;
+}
+/* 三线表 */
+#write table{
+	border-top: 1.5pt solid;
+	border-bottom: 1.5pt solid;
+	font-family:"Source Han Serif";
+	font-size:9pt;
+	text-align:center;
+    page-break-inside:avoid;
+}
+#write table td{
+	padding:7px;
+}
+#write table tr{
+	padding:7px;
+}
+
+#write thead{
+	border-bottom: 0.75pt solid;
+	font-family:黑体;
+	font-size:9pt;
+}
+img{
+    page-break-inside:avoid;
+}
+
+/*行内代码*/
+p code, li code {
+  color: rgb(60, 112, 198);
+  background-color:#fefefe;
+  font-family:'LM Mono 10', 'LM Roman 10','Times New Roman',Arial,'Source Han Serif',simsun,sans-serif;
+  box-sizing: border-box; 
+  /*border: 1px #ced8e4 solid; */
+  border-right: 0px;
+  margin:  0 2px 0 2px ;
+  padding: 0 2px 0 2px;
+  border-radius: 2px 2px 2px 2px ; 
+ /**/ box-shadow: 0 0 1px 1px #c8d3df;  
+}
+
+
+/*下面是自动编号，初始化计数器。使用多级编号，编号后加空格模仿LaTeX */
+#write 
+
+h1 {
+    counter-reset: h2
+}
+
+h2 {
+    counter-reset: h3
+}
+
+h3 {
+    counter-reset: h4
+}
+
+h4 {
+    counter-reset: h5
+}
+
+h5 {
+    counter-reset: h6
+}
+
+/** put counter result into headings */
+
+#write h2:before {
+    counter-increment: h2;
+    content: counter(h2);
+    margin-right: 2rem;
+}
+
+#write h3:before,
+h3.md-focus.md-heading:before /** override the default style for focused headings */ {
+    counter-increment: h3;
+    content: counter(h2) "." counter(h3);
+    margin-right: 2rem;
+}
+
+#write h4:before,
+h4.md-focus.md-heading:before {
+    counter-increment: h4;
+    content: counter(h2) "." counter(h3) "." counter(h4);
+    margin-right: 2rem;
+}
+
+#write h5:before,
+h5.md-focus.md-heading:before {
+    counter-increment: h5;
+    content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5);
+    margin-right: 2rem;
+}
+
+/*目录*/
+.md-toc-content{
+  margin-left: 2em;
+  counter-reset: toc-h2 toc-h3 toc-h4 ;/*修复缺失上级标题时无法递增*/
+  page-break-after: always;
+}
+
+.md-toc-inner{
+  margin-left:0 !important;
+  color:black !important;
+}
+.md-toc-item{
+  color:black !important;
+  font-size: 11pt;
+  font-family: 'LM Roman 10',"Times New Roman",Arial, "Source Han Serif", simsun , sans-serif; 
+}
+/* 目录标题 */
+.md-toc-content .md-toc-h1 {
+/*  display:none;*/
+  counter-reset: toc-h2;
+}
+.md-toc-content .md-toc-h2 {
+  counter-reset: toc-h3;
+}
+.md-toc-content .md-toc-h3 {
+  counter-reset: toc-h4;
+}
+.md-toc-content .md-toc-h4 {
+  counter-reset: toc-h5;
+} 
+.md-toc-content .md-toc-h5 {
+  counter-reset: toc-h6;
+} 
+.md-toc-content .md-toc-h2:before {
+  counter-increment: toc-h2;
+  content: counter(toc-h2);
+  margin-right: 1rem;
+}
+.md-toc-content .md-toc-h3:before {
+  counter-increment: toc-h3;
+  content: counter(toc-h2) "." counter(toc-h3);
+  margin-left: 1.5rem;
+  margin-right: 0.5rem;
+}
+.md-toc-content .md-toc-h4:before {
+  counter-increment: toc-h4;
+  content: counter(toc-h2) "." counter(toc-h3) "." counter(toc-h4);
+  margin-left: 3.5rem;
+  margin-right: 0.5rem;
+}
+.md-toc-content .md-toc-h5:before {
+  counter-increment: toc-h5;
+  content: counter(toc-h2) "." counter(toc-h3) "." counter(toc-h4) "." counter(toc-h5);
+  margin-left: 5.5rem;
+  margin-right: 0.5rem;
+}
+/* 大纲标题 */
+.sidebar-content .outline-h1 {
+  counter-reset: outline-h2;
+}
+.sidebar-content .outline-h2 {
+  counter-reset: outline-h3;
+}
+.sidebar-content .outline-h3 {
+  counter-reset: outline-h4;
+}
+.sidebar-content .outline-h4 {
+  counter-reset: outline-h5;
+}
+.sidebar-content .outline-h5 {
+  counter-reset: outline-h6;
+} 
+
+.sidebar-content .outline-h2 .outline-label:before {
+  counter-increment: outline-h2;
+  content: counter(outline-h2) " ";
+}
+.sidebar-content .outline-h3 .outline-label:before {
+  counter-increment: outline-h3;
+  content: counter(outline-h2) "." counter(outline-h3) "  ";
+}
+.sidebar-content .outline-h4 .outline-label:before {
+  counter-increment: outline-h4;
+  content: counter(outline-h2) "." counter(outline-h3) "." counter(outline-h4) "  ";
+}
+.sidebar-content .outline-h5 .outline-label:before {
+  counter-increment: outline-h5;
+  content: counter(outline-h2) "." counter(outline-h3) "." counter(outline-h4) "." counter(outline-h5) "  ";
+}
+
+
+/** override the default style for focused headings */
+#write>h3.md-focus:before,
+#write>h4.md-focus:before,
+#write>h5.md-focus:before,
+#write>h6.md-focus:before,
+h3.md-focus:before,
+h4.md-focus:before,
+h5.md-focus:before,
+h6.md-focus:before {
+    color: inherit;
+    border: inherit;
+    border-radius: inherit;
+    position: inherit;
+    left:initial;
+    float: none;
+    top:initial;
+    font-size: inherit;
+    padding-left: inherit;
+    padding-right: inherit;
+    vertical-align: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+}
+
+ :root {--mermaid-font-zoom:1em ;} 
+</style><title>more efficient C++ 笔记</title>
+</head>
+<body class='typora-export os-windows typora-export-show-outline typora-export-no-collapse-outline'><div class='typora-export-content'>
+<div class="typora-export-sidebar"><div class="outline-content"><li class="outline-item-wrapper outline-h1"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#"> </a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#基础-basics">基础 Basics</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#区分-pointer-和-reference">区分 pointer 和 reference</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h4"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#reference不可为nullpointer则可以为null">reference不可为null，pointer则可以为null</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#reference不可被重新赋值而non-const-pointer可以">reference不可被重新赋值,而non-const pointer可以</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#区分使用reference或pointer的场景">区分使用reference或pointer的场景</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#最好使用-c-转型操作符">最好使用 C++ 转型操作符</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#绝对不要以多态方式处理数组">绝对不要以多态方式处理数组</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#非必要不提供-default-constructors">非必要不提供 default constructors </a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#操作符-operators">操作符 Operators</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#对定制的类型转换函数保持警觉">对定制的"类型转换函数"保持警觉</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#区别-increment--decrement-操作符的前置prefix和后置postfix形式">区别 increment / decrement 操作符的前置(prefix)和后置(postfix)形式</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#千万不要重载---和--操作符">千万不要重载 &amp;&amp;, || 和 , 操作符</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#了解各种不同意义的-new-和-delete">了解各种不同意义的 new 和 delete</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#异常-exceptions">异常 Exceptions</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#利用-destructor-避免资源泄露">利用 destructor 避免资源泄露</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#在-constructor-内阻止资源泄露">在 constructor 内阻止资源泄露</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#禁止异常exception流出-destructor-外">禁止异常(exception)流出 destructor 外</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#了解抛出一个exception与传递一个参数或调用一个虚函数之间的差异">了解"抛出一个exception"与"传递一个参数"或"调用一个虚函数"之间的差异</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#以-by-reference-方式捕捉-exception">以 by reference 方式捕捉 exception</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#明智运用-exception-specifications">明智运用 exception specifications</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#了解异常处理exception-handling的成本">了解异常处理(exception handling)的成本</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#效率-efficiency">效率 Efficiency</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#谨记-80-20-法则">谨记 80-20 法则</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#考虑使用缓式评估lazy-evaluation">考虑使用缓式评估(lazy evaluation)</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#分期摊还预期的计算成本">分期摊还预期的计算成本</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#了解临时对象的来源">了解临时对象的来源</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#协助完成返回值优化rvo">协助完成"返回值优化"(RVO)</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#利用重载技术overload避免隐式类型转换implicit-type-conversions">利用重载技术(overload)避免隐式类型转换(implicit type conversions)</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#考虑以操作符复合形式op取代其独身形式op">考虑以操作符复合形式(op=)取代其独身形式(op)</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#考虑使用其他程序库">考虑使用其他程序库</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#了解-虚函数多继承虚基类运行时类型识别的成本">了解 虚函数、多继承、虚基类、运行时类型识别的成本</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#技术-techniqueidiomspatterns">技术 Technique,Idioms,Patterns</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#将-constructor-和-non-member-function-虚化">将 constructor 和 non-member function 虚化</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#限制某个-class-所能产生的对象数量">限制某个 class 所能产生的对象数量</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#要求或禁止对象产生于堆heap中">要求(或禁止)对象产生于堆(heap)中</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#智能指针smart-pointers">智能指针(Smart pointers)</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#引用计数reference-counting">引用计数(Reference counting)</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#替身类代理类proxy-classes">替身类、代理类(Proxy classes)</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#让函数根据一个以上的对象类型来决定如何虚化">让函数根据一个以上的对象类型来决定如何虚化</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#杂项讨论-miscellany">杂项讨论 Miscellany</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#在未来时态下发展程序">在未来时态下发展程序</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#将非尾端类non-leaf-classes设计为抽象类abstract-classes">将非尾端类(non-leaf classes)设计为抽象类(abstract classes)</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#如何在同一个程序中结合-c-和-c">如何在同一个程序中结合 C++ 和 C</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#让自己习惯于标准-c-语言">让自己习惯于标准 C++ 语言</a></div><ul class="outline-children"></ul></li></ul></li></ul></li></div></div><div id='write'  class=' first-line-indent'><center style="font-size:40px;">more efficient C++ 笔记</center><br><center>好的方程列出来有诗的美感</center><h1 ><span> </span></h1><p><span>																							</span><em><span>updating</span></em></p><hr /><center style="font-size:larger;">目录</center><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n3"><a class="md-toc-inner" href="#"> </a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n12"><a class="md-toc-inner" href="#基础-basics">基础 Basics</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n15"><a class="md-toc-inner" href="#区分-pointer-和-reference">区分 pointer 和 reference</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n16"><a class="md-toc-inner" href="#reference不可为nullpointer则可以为null">reference不可为null，pointer则可以为null</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n24"><a class="md-toc-inner" href="#reference不可被重新赋值而non-const-pointer可以">reference不可被重新赋值,而non-const pointer可以</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n29"><a class="md-toc-inner" href="#区分使用reference或pointer的场景">区分使用reference或pointer的场景</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n37"><a class="md-toc-inner" href="#最好使用-c-转型操作符">最好使用 C++ 转型操作符</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n61"><a class="md-toc-inner" href="#绝对不要以多态方式处理数组">绝对不要以多态方式处理数组</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n75"><a class="md-toc-inner" href="#非必要不提供-default-constructors">非必要不提供 default constructors </a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n78"><a class="md-toc-inner" href="#操作符-operators">操作符 Operators</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n79"><a class="md-toc-inner" href="#对定制的类型转换函数保持警觉">对定制的"类型转换函数"保持警觉</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n81"><a class="md-toc-inner" href="#区别-increment--decrement-操作符的前置prefix和后置postfix形式">区别 increment / decrement 操作符的前置(prefix)和后置(postfix)形式</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n83"><a class="md-toc-inner" href="#千万不要重载---和--操作符">千万不要重载 &amp;&amp;, || 和 , 操作符</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n85"><a class="md-toc-inner" href="#了解各种不同意义的-new-和-delete">了解各种不同意义的 new 和 delete</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n87"><a class="md-toc-inner" href="#异常-exceptions">异常 Exceptions</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n88"><a class="md-toc-inner" href="#利用-destructor-避免资源泄露">利用 destructor 避免资源泄露</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n90"><a class="md-toc-inner" href="#在-constructor-内阻止资源泄露">在 constructor 内阻止资源泄露</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n92"><a class="md-toc-inner" href="#禁止异常exception流出-destructor-外">禁止异常(exception)流出 destructor 外</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n94"><a class="md-toc-inner" href="#了解抛出一个exception与传递一个参数或调用一个虚函数之间的差异">了解"抛出一个exception"与"传递一个参数"或"调用一个虚函数"之间的差异</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n96"><a class="md-toc-inner" href="#以-by-reference-方式捕捉-exception">以 by reference 方式捕捉 exception</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n98"><a class="md-toc-inner" href="#明智运用-exception-specifications">明智运用 exception specifications</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n100"><a class="md-toc-inner" href="#了解异常处理exception-handling的成本">了解异常处理(exception handling)的成本</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n102"><a class="md-toc-inner" href="#效率-efficiency">效率 Efficiency</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n103"><a class="md-toc-inner" href="#谨记-80-20-法则">谨记 80-20 法则</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n105"><a class="md-toc-inner" href="#考虑使用缓式评估lazy-evaluation">考虑使用缓式评估(lazy evaluation)</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n107"><a class="md-toc-inner" href="#分期摊还预期的计算成本">分期摊还预期的计算成本</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n109"><a class="md-toc-inner" href="#了解临时对象的来源">了解临时对象的来源</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n111"><a class="md-toc-inner" href="#协助完成返回值优化rvo">协助完成"返回值优化"(RVO)</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n113"><a class="md-toc-inner" href="#利用重载技术overload避免隐式类型转换implicit-type-conversions">利用重载技术(overload)避免隐式类型转换(implicit type conversions)</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n115"><a class="md-toc-inner" href="#考虑以操作符复合形式op取代其独身形式op">考虑以操作符复合形式(op=)取代其独身形式(op)</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n117"><a class="md-toc-inner" href="#考虑使用其他程序库">考虑使用其他程序库</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n119"><a class="md-toc-inner" href="#了解-虚函数多继承虚基类运行时类型识别的成本">了解 虚函数、多继承、虚基类、运行时类型识别的成本</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n121"><a class="md-toc-inner" href="#技术-techniqueidiomspatterns">技术 Technique,Idioms,Patterns</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n122"><a class="md-toc-inner" href="#将-constructor-和-non-member-function-虚化">将 constructor 和 non-member function 虚化</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n124"><a class="md-toc-inner" href="#限制某个-class-所能产生的对象数量">限制某个 class 所能产生的对象数量</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n126"><a class="md-toc-inner" href="#要求或禁止对象产生于堆heap中">要求(或禁止)对象产生于堆(heap)中</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n128"><a class="md-toc-inner" href="#智能指针smart-pointers">智能指针(Smart pointers)</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n130"><a class="md-toc-inner" href="#引用计数reference-counting">引用计数(Reference counting)</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n132"><a class="md-toc-inner" href="#替身类代理类proxy-classes">替身类、代理类(Proxy classes)</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n134"><a class="md-toc-inner" href="#让函数根据一个以上的对象类型来决定如何虚化">让函数根据一个以上的对象类型来决定如何虚化</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n137"><a class="md-toc-inner" href="#杂项讨论-miscellany">杂项讨论 Miscellany</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n138"><a class="md-toc-inner" href="#在未来时态下发展程序">在未来时态下发展程序</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n140"><a class="md-toc-inner" href="#将非尾端类non-leaf-classes设计为抽象类abstract-classes">将非尾端类(non-leaf classes)设计为抽象类(abstract classes)</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n142"><a class="md-toc-inner" href="#如何在同一个程序中结合-c-和-c">如何在同一个程序中结合 C++ 和 C</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n144"><a class="md-toc-inner" href="#让自己习惯于标准-c-语言">让自己习惯于标准 C++ 语言</a></span></p></div><hr /><p>&nbsp;</p><div style="page-break-after: always;"></div><h2 id='基础-basics'><span>基础 Basics</span></h2><p><span>	</span><span>主要讨论 pointer（指针）、reference（引用）、casts（类型转换）、array（数组）、constructor（构造函数）。</span></p><p>&nbsp;</p><h3 id='区分-pointer-和-reference'><span>区分 pointer 和 reference</span></h3><h4 id='reference不可为nullpointer则可以为null'><span>reference不可为null，pointer则可以为null</span></h4><p><span>reference 不可为 null ，pointer 则可以为 null ，这导致了 reference 必然代表了某个确定存在的对象，而 pointer 则可以代表某个存在性存疑（可能存在，也可能不存在）的对象。</span></p><p><span>对于下列代码, 编译器不会报错,但是 C++ 对此没有定义,其结果不可预期。</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="c++"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="c++"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 10.8571px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable-3">char</span> <span class="cm-variable-3">*</span><span class="cm-variable">pc</span> <span class="cm-operator">=</span> <span class="cm-keyword">nullptr</span>;<span class="cm-tab" role="presentation" cm-text="	"> </span><span class="cm-comment">//将指针pc设为nullptr</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable-3">char</span> <span class="cm-operator">&amp;</span><span class="cm-variable">rc</span> <span class="cm-operator">=</span> <span class="cm-operator">*</span><span class="cm-variable">pc</span>; <span class="cm-comment">//让rc成为pc指向的char的引用</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 51px;"></div><div class="CodeMirror-gutters" style="display: none; height: 51px;"></div></div></div></pre><p><span>永远不要这么做！！！永远不要使 reference 成为 null ！！！</span></p><p><span>这样一来，不需要考虑 reference 成为 null 的可能性，使用 reference 可能会比使用 pointer 更有效率，因为使用 pointer 需要考虑其是否为 nullptr ，而 reference 则不需要。</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="c++"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="c++"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 10.8571px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-comment">//使用reference</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable-3">void</span> <span class="cm-def">add</span>(<span class="cm-keyword">const</span> <span class="cm-variable-3">int</span><span class="cm-operator">&amp;</span> <span class="cm-variable">ra</span>,<span class="cm-keyword">const</span> <span class="cm-variable-3">int</span><span class="cm-operator">&amp;</span> <span class="cm-variable">rb</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">cout</span><span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">ra</span><span class="cm-operator">+</span><span class="cm-variable">rb</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span>}</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 129px;"></div><div class="CodeMirror-gutters" style="display: none; height: 129px;"></div></div></div></pre><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="c++"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="c++"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 10.8571px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><span><span>​</span>x</span></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-comment">//使用pointer</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable-3">void</span> <span class="cm-def">add</span>(<span class="cm-keyword">const</span> <span class="cm-variable-3">int</span> <span class="cm-variable-3">*</span><span class="cm-variable">pa</span>,<span class="cm-keyword">const</span> <span class="cm-variable-3">int</span> <span class="cm-variable-3">*</span><span class="cm-variable">pb</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-keyword">if</span>(<span class="cm-variable">pa</span><span class="cm-operator">&amp;&amp;</span><span class="cm-variable">pb</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable">cout</span><span class="cm-operator">&lt;&lt;</span> <span class="cm-operator">*</span><span class="cm-variable">pa</span><span class="cm-operator">+*</span><span class="cm-variable">pb</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-keyword">else</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" class="cm-tab-wrap-hack" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable">cerr</span><span class="cm-operator">&lt;&lt;</span><span class="cm-string">"nullptr"</span>;<span class="cm-tab" role="presentation" cm-text="	">    </span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 334px;"></div><div class="CodeMirror-gutters" style="display: none; height: 334px;"></div></div></div></pre><h4 id='reference不可被重新赋值而non-const-pointer可以'><span>reference不可被重新赋值,而non-const pointer可以</span></h4><p><strong><span>reference 不可以在初始化之后被重新赋值，并且 reference 必须在定义时被赋值(即初始化)</span></strong><span>，这有点类似于常指针（const pointer），但与之不同的是 reference 在被初始化时必须代表一个存在的对象，而 const pointer 则可被初始化为 null 。</span></p><footer style="text-align:right; font-size:10px;">方程的疑问:或许 reference 就是通过 const pointer 实现的?</footer>		<p><span>定义一个 non-const pointer 则不需要初始化,并且可以被多次赋值。</span></p><p>&nbsp;</p><h4 id='区分使用reference或pointer的场景'><span>区分使用reference或pointer的场景</span></h4><p><span>以下情形适合使用 reference:</span><span>	</span></p><ul><li><span>当确切的知道需要指向某个存在的对象并且不再改变使之指向其他对象时</span></li><li><span>一般情况下在运算符重载中,如重载 +、++、 +=、 [ ] 时 (有特殊需求时除外)</span></li></ul><p><span>其他情况请使用 pointer 。</span></p><h3 id='最好使用-c-转型操作符'><span>最好使用 C++ 转型操作符</span></h3><p><span>		</span><span>C++ 转型操作符比 C-style 转型方式有更清晰的语义,更易于理解和查找</span></p><ul><li><p><span>	</span><span>static_cast</span><span>&lt;</span><span>type</span><span>&gt;</span><span>(expression)</span></p><ul><li><span>将表达式转化为 type 类型,但不能改变常量性,也不能将某个struct转化为 int ,不能将某个 double 类型的变量转化为一个 pointer 。</span></li></ul></li><li><p><span>	</span><span>const_cast</span><span>&lt;</span><span>type</span><span>&gt;</span><span>(expression)</span></p><ul><li><span>用于改变表达式的常量性</span></li></ul></li><li><p><span>	</span><span>dynamic_cast</span><span>&lt;</span><span>type</span><span>&gt;</span><span>(expression)</span></p><ul><li><span>用于把 expression 转换成 type 类型的对象。type 必须是类的pointer、类的 reference 或者 void*</span></li></ul></li><li><p><span>	</span><span>reinterpret_cast</span><span>&lt;</span><span>type</span><span>&gt;</span><span>(expression)</span></p><ul><li><span>用于进行各种不同类型的 pointer 之间、不同类型的 reference 之间以及指针和能容纳指针的整数类型之间的转换。转换时，执行的是逐个比特复制的操作。</span></li></ul></li></ul><footer style="text-align:right;font-size:10px;"><a href="http://c.biancheng.net/view/410.html" style="text-decoration:none; color:red;">参考C语言中文网</a></footer>	<h3 id='绝对不要以多态方式处理数组'><span>绝对不要以多态方式处理数组</span></h3><p><span>对于下列代码，们预期的运行结果应为：</span></p><center>1 1 1 1 1 1 1 1 1 1</center><p><span>而实际运行结果则为：</span></p><center>1 2 1 2 1 2 1 2 1 2</center><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="c++" style="break-inside: unset;"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="c++"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 10.8571px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-keyword">class</span> <span class="cm-def">base</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">public</span>:</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;  <span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable-3">int</span> <span class="cm-variable">a</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">base</span>()</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable">a</span><span class="cm-operator">=</span><span class="cm-number">1</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-keyword">class</span> <span class="cm-def">derived</span>:<span class="cm-keyword">public</span> <span class="cm-variable">base</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">public</span>:</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable-3">int</span> <span class="cm-variable">b</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">derived</span>()</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">b</span><span class="cm-operator">=</span><span class="cm-number">2</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable-3">void</span> <span class="cm-def">print</span>(<span class="cm-variable">base</span> <span class="cm-operator">*</span><span class="cm-variable">array，int</span> <span class="cm-variable">length</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-keyword">for</span>(<span class="cm-variable-3">int</span> <span class="cm-variable">i</span>;<span class="cm-variable">i</span><span class="cm-operator">&lt;</span><span class="cm-variable">length</span>;<span class="cm-operator">++</span><span class="cm-variable">i</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">cout</span><span class="cm-operator">&lt;&lt;</span><span class="cm-variable">array</span>[<span class="cm-variable">i</span>].<span class="cm-variable">a</span><span class="cm-operator">&lt;&lt;</span><span class="cm-string">" "</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable-3">int</span> <span class="cm-def">main</span>()</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable">derived</span> <span class="cm-variable">array</span>[<span class="cm-number">10</span>];</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">print</span>(<span class="cm-variable">array</span>,<span class="cm-number">10</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-keyword">return</span> <span class="cm-number">0</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  }</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 874px;"></div><div class="CodeMirror-gutters" style="display: none; height: 874px;"></div></div></div></pre><p>&nbsp;</p><p><span>array[ i ] 其实是一个&quot;指针算数表达式&quot;的简写:它表达的其实是 </span><span>*</span><span>(array+i) 。数组是用一段连续的内存空间存储的, array 与 array+i 在内存中相距 i * sizeof(typeObj)例如在函数 print 中,形参为 base* array , int length , 而 array[ i ] 在内存中与 array 相距 i * sizeof(baseObj) 。</span></p><p><span>运用多态时, 若传入的是派生类 derived 数组，则该元素在内存中占的空间将为sizeof(derivedObj) 而不是 print 中确定的 sizeof(baseObj)</span><sup><span>[1]</span></sup><span> , 实际上 array[ i ] 在内存中与 array 相距 i * sizeof(derivedObj),但是编译器仍认为它们相距 i * sizeof(baseObj) </span></p><p><span>如此一来, 在进行遍历等操作时 array[ i ]</span><span>(</span><span>即*array+i</span><span>)</span><span>将会位移至错误的位置,并输出 unexpected result.</span></p><p><span>&quot;值得注意的是如果你不从一个具体类（concrete classes）（例如BST）派生出另一个具体类（例如BalancedBST），那么你就不太可能犯这种使用多态性数组的错误。&quot;</span><span>	</span><span>请查看</span><a href='#item33'><span>item33</span></a></p><p>&nbsp;</p><footer style="font-size:10px;text-align:right;">[1] sizeof(baseObj)与sizeof(derivedObj)通常并不相等</footer><h3 id='非必要不提供-default-constructors'><span>非必要不提供 default constructors </span></h3><p>&nbsp;</p><p>&nbsp;</p><h2 id='操作符-operators'><span>操作符 Operators</span></h2><h3 id='对定制的类型转换函数保持警觉'><span>对定制的&quot;类型转换函数&quot;保持警觉</span></h3><div id="item5"></div><h3 id='区别-increment--decrement-操作符的前置prefix和后置postfix形式'><span>区别 increment / decrement 操作符的前置(prefix)和后置(postfix)形式</span></h3><div id="item6"></div><h3 id='千万不要重载---和--操作符'><span>千万不要重载 &amp;&amp;, || 和 , 操作符</span></h3><div id="item7"></div><h3 id='了解各种不同意义的-new-和-delete'><span>了解各种不同意义的 new 和 delete</span></h3><div id="item8"></div><h2 id='异常-exceptions'><span>异常 Exceptions</span></h2><h3 id='利用-destructor-避免资源泄露'><span>利用 destructor 避免资源泄露</span></h3><div id="item9"></div><h3 id='在-constructor-内阻止资源泄露'><span>在 constructor 内阻止资源泄露</span></h3><div id="item10"></div><h3 id='禁止异常exception流出-destructor-外'><span>禁止异常(exception)流出 destructor 外</span></h3><div id="item11"></div><h3 id='了解抛出一个exception与传递一个参数或调用一个虚函数之间的差异'><span>了解&quot;抛出一个exception&quot;与&quot;传递一个参数&quot;或&quot;调用一个虚函数&quot;之间的差异</span></h3><div id="item12"></div><h3 id='以-by-reference-方式捕捉-exception'><span>以 by reference 方式捕捉 exception</span></h3><div id="item13"></div><h3 id='明智运用-exception-specifications'><span>明智运用 exception specifications</span></h3><div id="item14"></div><h3 id='了解异常处理exception-handling的成本'><span>了解异常处理(exception handling)的成本</span></h3><div id="item15"></div><h2 id='效率-efficiency'><span>效率 Efficiency</span></h2><h3 id='谨记-80-20-法则'><span>谨记 80-20 法则</span></h3><div id="item15"></div><h3 id='考虑使用缓式评估lazy-evaluation'><span>考虑使用缓式评估(lazy evaluation)</span></h3> <div id="item17"></div><h3 id='分期摊还预期的计算成本'><span>分期摊还预期的计算成本</span></h3><div id="item18"></div><h3 id='了解临时对象的来源'><span>了解临时对象的来源</span></h3><div id="item19"></div><h3 id='协助完成返回值优化rvo'><span>协助完成&quot;返回值优化&quot;(RVO)</span></h3><div id="item20"></div><h3 id='利用重载技术overload避免隐式类型转换implicit-type-conversions'><span>利用重载技术(overload)避免隐式类型转换(implicit type conversions)</span></h3><div id="item21"></div><h3 id='考虑以操作符复合形式op取代其独身形式op'><span>考虑以操作符复合形式(op=)取代其独身形式(op)</span></h3><div id="item22"></div><h3 id='考虑使用其他程序库'><span>考虑使用其他程序库</span></h3><div id="item23"></div><h3 id='了解-虚函数多继承虚基类运行时类型识别的成本'><span>了解 虚函数、多继承、虚基类、运行时类型识别的成本</span></h3><div id="item24"></div><h2 id='技术-techniqueidiomspatterns'><span>技术 Technique,Idioms,Patterns</span></h2><h3 id='将-constructor-和-non-member-function-虚化'><span>将 constructor 和 non-member function 虚化</span></h3><div id="item25"></div><h3 id='限制某个-class-所能产生的对象数量'><span>限制某个 class 所能产生的对象数量</span></h3><div id="item26"></div><h3 id='要求或禁止对象产生于堆heap中'><span>要求(或禁止)对象产生于堆(heap)中</span></h3><div id="item27"></div><h3 id='智能指针smart-pointers'><span>智能指针(Smart pointers)</span></h3><div id="item28"></div><h3 id='引用计数reference-counting'><span>引用计数(Reference counting)</span></h3><div id="item29"></div><h3 id='替身类代理类proxy-classes'><span>替身类、代理类(Proxy classes)</span></h3><div id="item30"></div><h3 id='让函数根据一个以上的对象类型来决定如何虚化'><span>让函数根据一个以上的对象类型来决定如何虚化</span></h3><div id="item31"></div><p>&nbsp;</p><h2 id='杂项讨论-miscellany'><span>杂项讨论 Miscellany</span></h2><h3 id='在未来时态下发展程序'><span>在未来时态下发展程序</span></h3><div id="item32"></div><h3 id='将非尾端类non-leaf-classes设计为抽象类abstract-classes'><span>将非尾端类(non-leaf classes)设计为抽象类(abstract classes)</span></h3><div id="item33"></div><h3 id='如何在同一个程序中结合-c-和-c'><span>如何在同一个程序中结合 C++ 和 C</span></h3><div id="item34"></div><h3 id='让自己习惯于标准-c-语言'><span>让自己习惯于标准 C++ 语言</span></h3><div id="item35"></div><p>&nbsp;</p></div></div>
+
+<script>(function(){var e=document.body.parentElement,t=[],n=null,i=document.body.classList.contains("typora-export-collapse-outline"),r=function(e,t,n){document.addEventListener(e,function(e){if(!e.defaultPrevented)for(var i=e.target;i&&i!=this;i=i.parentNode)if(i.matches(t)){!1===n.call(i,e)&&(e.preventDefault(),e.stopPropagation());break}},!1)};function o(){return e.scrollTop}r("click",".outline-expander",function(e){var t=this.closest(".outline-item-wrapper").classList;return t.contains("outline-item-open")?t.remove("outline-item-open"):t.add("outline-item-open"),d(),!1}),r("click",".outline-item",function(e){var t=this.querySelector(".outline-label");if(location.hash="#"+t.getAttribute("href"),i){var n=this.closest(".outline-item-wrapper").classList;n.contains("outline-item-open")||n.add("outline-item-open"),c(),n.add("outline-item-active")}});var a,s,l=function(){var e=o();n=null;for(var i=0;i<t.length&&t[i][1]-e<60;i++)n=t[i]},c=function(){document.querySelectorAll(".outline-item-active").forEach(e=>e.classList.remove("outline-item-active")),document.querySelectorAll(".outline-item-single.outline-item-open").forEach(e=>e.classList.remove("outline-item-open"))},d=function(){if(n){c();var e=document.querySelector('.outline-label[href="#'+(CSS.escape?CSS.escape(n[0]):n[0])+'"]');if(e)if(i){var t=e.closest(".outline-item-open>ul>.outline-item-wrapper");if(t)t.classList.add("outline-item-active");else{for(var r=(e=e.closest(".outline-item-wrapper")).parentElement.closest(".outline-item-wrapper");r;)r=(e=r).parentElement.closest(".outline-item-wrapper");e.classList.add("outline-item-active")}}else e.closest(".outline-item-wrapper").classList.add("outline-item-active")}};window.addEventListener("scroll",function(e){a&&clearTimeout(a),a=setTimeout(function(){l(),d()},300)});var u=function(){s=setTimeout(function(){!function(){t=[];var e=o();document.querySelector("#write").querySelectorAll("h1, h2, h3, h4, h5, h6").forEach(n=>{var i=n.getAttribute("id");t.push([i,e+n.getBoundingClientRect().y])})}(),l(),d()},300)};window.addEventListener("resize",function(e){s&&clearTimeout(s),u()}),u()})();</script></body>
+</html>
