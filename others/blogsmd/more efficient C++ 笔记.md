@@ -163,7 +163,118 @@ array[ i ] 其实是一个"指针算数表达式"的简写:它表达的其实是
 
 ### 非必要不提供 default constructors 
 
+不是所有的对象都能在没有任何外来信息的情况下被初始化,例如 用来表现通讯簿字段的 class ,如果没有获得指定的人名,产生的对象将毫无意义。
 
+在缺乏 default constructor 时可能带来以下几种问题
+
+- 定义存放该类对象的数组
+- 不再适用于许多 template-based container classes
+- 要求所有派生类都需要了解缺乏 default constructor 的 virtual base class 的意义，并且提供 base class 初始化所需的变量
+
+####定义存放该类对象的数组
+
+```C++
+	class test
+    {
+		int num;
+        test(const int &rNum):num(rNum){};
+    };
+```
+
+对于 test 类来说，以下创建数组的方式是错误的：
+
+```C++
+	//test[10];
+	//test *ptr=new test[10];
+```
+
+有三个方法可以侧面解决这个问题:
+
+1. 使用 non-heap 数组,在定义时提供必要的初始量
+
+    ```C++
+    test a[10]={1,2,3,4,5,6,7,8,9,10};
+    ```
+
+    缺点: 无法定义 heap 数组
+
+    
+
+2. 使用'指针数组'而非'对象数组'
+
+    ```C++
+    typedef test* ptr;
+    ptr a[10];
+    ptr *a=new ptr[10];
+    ```
+
+    缺点:
+
+    1. 需要手动删除所有对象
+    2. 需要的内存总量较大,需要空间放置指针,还需要另外的空间放置对象
+
+    
+
+3. 
+
+    ```c++
+    //第二个缺点可以通过先为数组分配 raw memory ,然后使用 placement new 在这块内存上构造test对象
+    
+    //分配 raw memory 
+    void *rawMemory = operator new[] (10*sizeof(test));
+    //使 ptr 指向 raw memory
+    test *ptr = static_cast<test*>(rawMemory);
+    //利用 placement new 构造这块内存中的 test 对象
+    for(int i=0;i<10;++i)
+    {
+        new(&ptr[i]) test(num);
+    }
+    
+    //析构对象
+    for(int i=9;i>=0;--i)
+    {
+        ptr[i].~test();
+    }
+    //释放 raw memory
+    operator delete[] (rawMemory);
+    
+    // 下面的写法是错误的
+    //delete [] ptr;
+    ```
+
+    详见[item8](#item8)
+
+    
+
+#### 不再适用于许多 template-based container classes
+
+对许多 template-based container classes 而言,被实例化的目标类型必须得有一个 default constructor .因为在那些 template 内部巨虎总是会产生一个以"template类型参数"作为类型而架构起来的数组.
+
+例如:
+
+```C++
+	template<class T>
+    class Array{
+    public:
+        Array(int size);
+        ...
+    private:
+        T *data;
+    };
+
+	template<class T>
+    Array<T>::Array(int size)
+    {
+        data = new T[size];//调用 size 次 T::T();
+        ...
+    }
+```
+
+对于足够严谨的 template ,缺少 default constructor 的 class 仍然是可用的,例如 vector **template** .
+
+
+
+#### 缺乏 default constructor 的 virtual base class 要求所有的 derived class 提供 virtual base class 的 constructor 参数 
 
 
 

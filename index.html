@@ -13,20 +13,33 @@
     <!-- skeleton@Copyright 2014, Dave Gamache -->
     <link rel="stylesheet" href="./others/css/custom.css">
     <title>Start</title>
+    
 </head>
 <body>
 <div style="background-color: rgb(0, 0, 0);">
     <br>
     <br>
-    <h1 style="text-align: center; color: azure;">正在跳转中~~</h1>
+    <h1 style="text-align: center; color: azure;" id="countDownNum">正在跳转中~~</h1>
     <img src="./others/pictures/none-existence.jpg" class="value-img" height="400px" width="300px">
     <footer style="text-align: center;color: antiquewhite;">Click <a href="./others/Equation homepage.html#top" style="color: rgb(243, 220, 232);text-decoration:none;" onclick="show()">here</a style="color: antiquewhite;"> to reload,<br>or goto <a href="http://www.equationzhao.space/others/Equation%20homepage.html#top" style="color: rgb(231, 200, 217);text-decoration:none;"><strong>Github page</strong></a>.</footer>
     <br><br><br><br><br>
 </div>
 </body>
 <script>
-function show(){
-    alert('In order to get a better experience when viewing the page \nplease ensure your internet connection.');
-    alert('The page doesn\'t fit the screen without a ratio of 16:9 and those resolution is lower then 1440p well, you may zoom the page if the content looks incorrect.')
-}
+    function show(){
+        alert('In order to get a better experience when viewing the page \nplease ensure your internet connection.');
+        alert('The page doesn\'t fit the screen without a ratio of 16:9 and those resolution is lower then 1440p well, you may zoom the page if the content looks incorrect.')
+    }
+    var i=4;
+    function showNum(){
+        if(i>1){
+            i-=1;
+        }
+        return i;
+    }
+    var div=document.getElementById("countDownNum");
+    function countDown(){
+        div.innerHTML=showNum();
+    }
+    setInterval (countDown, 1000);  
 </script>
