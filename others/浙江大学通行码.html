@@ -49,10 +49,6 @@
     function changename() {
         $('#name').html(window.prompt("你的名字") + '的通行码')
     }
-    function changepic() {
-        $('#pic').attr('src','./images/code'+cnt%2+'.png');
-        cnt = cnt+1;
-    }
 </script>
 </head>
 
@@ -73,7 +69,7 @@
         </div>
         <div class="time" id="valid"><div class="time"></div></div>
         <div id="hzjkm">
-            <div class="hz" style="color: #3c72e7;font-family: Microsoft YaHei;">健康码获取失败（请打开支付宝出示）</div>
+            <div class="hz" style="color: #3c72e7;font-family: Microsoft YaHei;"><a href="alipays://platformapi/startapp?url=https%3A%2F%2Fh5.dingtalk.com%2FhealthAct%2Findex.html&appId=20000067">健康码获取失败（请打开支付宝出示）</a></div>
         </div>
         <div style="background-color: #7aa0f1;margin-top:10px;margin-left: 20%;margin-right: 20%; padding: 1%; text-align: center;color: white; border-radius: 5px;">查询新冠疫苗接种记录</div>
         <div id="dateTime">
@@ -87,6 +83,6 @@
     <div class="bottom-tip">
         <h3>安 保 处 ：0571-88206110</h3>
         <a href="https://www.bilibili.com" target="_blank" class="link-btn">常见问题</a>
-        <h3>技术支持：0571-87951669</h3>
+        <h3>技 术 支 持：0571-87951669</h3>
     </div>
 </body></html>
