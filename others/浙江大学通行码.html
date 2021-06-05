@@ -49,6 +49,10 @@
     function changename() {
         $('#name').html(window.prompt("你的名字") + '的通行码')
     }
+
+    function gotoHealthCode(){
+        window.location.href="alipays://platformapi/startapp?url=https%3A%2F%2Fh5.dingtalk.com%2FhealthAct%2Findex.html&appId=20000067";
+    }
 </script>
 </head>
 
@@ -69,9 +73,9 @@
         </div>
         <div class="time" id="valid"><div class="time"></div></div>
         <div id="hzjkm">
-            <div class="hz" style="color: #3c72e7;font-family: Microsoft YaHei;"><a href="alipays://platformapi/startapp?url=https%3A%2F%2Fh5.dingtalk.com%2FhealthAct%2Findex.html&appId=20000067">健康码获取失败（请打开支付宝出示）</a></div>
+            <div class="hz" style="color: #3c72e7;font-family: Microsoft YaHei;">健康码获取失败（请打开支付宝出示</div>
         </div>
-        <div style="background-color: #7aa0f1;margin-top:10px;margin-left: 20%;margin-right: 20%; padding: 1%; text-align: center;color: white; border-radius: 5px;">查询新冠疫苗接种记录</div>
+        <div style="background-color: #7aa0f1;margin-top:10px;margin-left: 20%;margin-right: 20%; padding: 1%; text-align: center;color: white; border-radius: 5px;" onclick="gotoHealthCode()">查询新冠疫苗接种记录</div>
         <div id="dateTime">
             <div class="time"></div>
         <p class="tip" style="margin-top: 10px;">凭蓝码可在浙江大学校园内通行<br>请主动出示，配合检查</p>
