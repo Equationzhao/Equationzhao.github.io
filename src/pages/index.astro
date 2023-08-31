@@ -1,0 +1,33 @@
+---
+import { Image } from 'astro:assets';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import wolf from '../content/img/index-wolf.png';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header title={SITE_TITLE} />
+		<main>
+			<h1>🧑‍🚀 Hi there!<br>你好</h1>
+			<p>
+				欢迎来到 Eq 的个人网站<br>
+				这里是我的个人博客，我会在这里分享一些我学习的东西，也会分享一些我生活的东西，希望你能喜欢❤️
+			</p>
+				Have fun coding! 🎉
+				<br>
+				Have fun living! 🎉
+			</p>
+			<p>
+				<Image src={wolf} alt="my wolf"/>
+			</p>
+		</main>
+		<Footer />
+	</body>
+</html>

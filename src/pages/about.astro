@@ -1,0 +1,54 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+</head>
+
+<body>
+	<Header title={SITE_TITLE} />
+	<main>
+		<h1>My blog</h1>
+		<p>
+			<img src="https://avatars.githubusercontent.com/u/75521101?v=4" height="100px" width="100px"> <br>
+			欢迎来到 Eq 的个人网站<br>
+		<img src="https://wakatime.com/badge/user/90d4bbc2-a779-4bb1-a2a2-572e90fc4e29.svg" alt="Eq"> <br>
+		</p>
+		<h4>关于我</h4>
+		一个无所事事的大四学牲 <br> 
+		<code>>  University of Science and Technology Beijing</code>
+		<ul>
+			🔭 golang <br>
+		</ul> 
+		<ul>
+			📫 How to reach me: <a href="mailto:equationzhao@foxmail.com">equationzhao@foxmail.com</a> <br>
+		</ul>
+		<ul>
+			⭕️ OS: Arch/MacOS/Windows <br>
+		</ul>
+		<ul>
+			📚 Language: <br>
+			<div style="text-align: center;">
+				<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Equationzhao" alt="Eq" />
+			</div>
+		</ul>
+		<ul>
+			📄 <a href="/resume.pdf">我的简历</a> <br>
+		</ul>
+		<ul>
+			<img src="https://byr.pt/mybar.php?userid=333414&bgpic=6"><br>
+		</ul>
+		<br>
+		
+	</main>
+	<Footer/>
+</body>
+
+</html>
