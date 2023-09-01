@@ -12,7 +12,7 @@ import HeaderLink from './HeaderLink.astro';
 		<ViewTransitions />
 		<div class="internal-links">
 			<HeaderLink href="/" rel = prefetch-intent>Home</HeaderLink>
-			<HeaderLink href="/blog" rel = prefetch-intent>Blog</HeaderLink>
+			<HeaderLink href="/blog" rel = prefetch-intent>Posts</HeaderLink>
 			<HeaderLink href="/about" rel = prefetch-intent>About</HeaderLink>
 		</div>
 		<div class="social-links">
@@ -24,6 +24,10 @@ import HeaderLink from './HeaderLink.astro';
 						d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"
 					></path></svg
 				>
+			</a>
+			<a href="/rss.xml" target="_blank" rel = prefetch-intent>
+				<span class="sr-only">RSS</span>
+				<svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4209" width="32" height="32"><path d="M928 0H96C43.2 0 0 43.2 0 96v832c0 52.8 43.2 96 96 96h832c52.8 0 96-43.2 96-96V96c0-52.8-43.2-96-96-96zM279.008 831.2A86.72 86.72 0 0 1 192 744.608a87.04 87.04 0 0 1 174.016 0 86.72 86.72 0 0 1-87.008 86.592z m218.4 0.8a304.192 304.192 0 0 0-89.408-216.384 303.36 303.36 0 0 0-216-89.6v-125.184c237.6 0 431.2 193.408 431.2 431.2h-125.792z m222.208 0c0-291.008-236.608-528-527.392-528V178.816c360 0 652.992 293.184 652.992 653.216h-125.6z" ></path></svg>
 			</a>
 		</div>
 	</nav>
