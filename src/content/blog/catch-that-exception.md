@@ -4,7 +4,7 @@ pubDate: 2021-11-09
 description: ' 在 cpp 中如何处理构造函数异常'
 author: 'Eq'
 heroImage: '/catch-that-exception-cover.jpeg'
-tags: ["thinking"]
+tags: ["coding"]
 ---
 
 ## 为什么要处理构造函数的异常
