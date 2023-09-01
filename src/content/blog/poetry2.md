@@ -3,7 +3,7 @@ title: '曾经的诗 (二)'
 pubDate: 2020-09-30
 description: ' 曾经的诗'
 author: 'Eq'
-heroImage: '/public/placeholder.jpeg'
+heroImage: 'https://bingw.jasonzeng.dev?index=2'
 tags: ["thinking"]
 ---
 
