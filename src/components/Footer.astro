@@ -31,7 +31,7 @@ const today = new Date();
 		我要唱一支人类的歌曲 千百年后在宇宙中共鸣
 	</p>
 	<script>
-		fetch('https://v1.hitokoto.cn')
+		fetch('https://v1.hitokoto.cn?c=d&c=i&c=k')
 		.then(response => response.json())
 		.then(data => {
 			const hitokoto = document.querySelector('#hitokoto_text')
