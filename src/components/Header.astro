@@ -6,11 +6,14 @@ import HeaderLink from './HeaderLink.astro';
 
 <header>
 	<nav>
-		<h2><a href="/" rel = prefetch-intent>{SITE_TITLE}</a></h2>
+		<h2><a href="/" rel = prefetch-intent>{SITE_TITLE}</a>
+			<br>好的方程列出来有诗の美感
+		</h2>
 		<ViewTransitions />
 		<div class="internal-links">
 			<HeaderLink href="/" rel = prefetch-intent>Home</HeaderLink>
 			<HeaderLink href="/blog" rel = prefetch-intent>Blog</HeaderLink>
+			<HeaderLink href="/tags" rel = prefetch-intent>Tags</HeaderLink>
 			<HeaderLink href="/about" rel = prefetch-intent>About</HeaderLink>
 		</div>
 		<div class="social-links">
