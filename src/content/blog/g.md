@@ -1,7 +1,7 @@
 ---
 title: 'g:一个现代化的 ls 工具'
 pubDate: 2023-09-01
-description: '自制工具介绍'
+description: 'yet another ls'
 author: 'Eq'
 heroImage: 'https://github.com/Equationzhao/g/blob/master/logo.jpg?raw=true'
 tags: ["coding","golang"]
