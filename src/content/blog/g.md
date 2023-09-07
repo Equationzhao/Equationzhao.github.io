@@ -28,6 +28,8 @@ g is a ls alternative with features:
 
 支持 Windows/Linux/macOS
 
+至于性能那确实比不上 `exa`,`lsd`, 毕竟人家是 rust 写的是吧:doge
+
 [Github repo](https://github.com/Equationzhao/g)
 
 文档地址在这里  [g](https://g.equationzhao.space)
