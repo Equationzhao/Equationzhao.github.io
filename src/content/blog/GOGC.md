@@ -3,7 +3,7 @@ title: 'GC'
 pubDate: 2023-09-03
 description: 'GC notes'
 author: 'Eq'
-heroImage: 'https://bingw.jasonzeng.dev?index=8'
+heroImage: 'https://bingw.jasonzeng.dev?index=9'
 tags: ["coding"]
 ---
 
