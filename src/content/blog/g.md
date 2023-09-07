@@ -40,3 +40,5 @@ g is a ls alternative with features:
 
 shot with [vhs](https://github.com/charmbracelet/vhs)
 ![g](https://github.com/Equationzhao/g/blob/master/how-g-works.gif?raw=true)
+
+[post in deepin bbs](https://bbs.deepin.org/post/261954)
