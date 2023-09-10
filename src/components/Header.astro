@@ -1,10 +1,17 @@
 ---
+import { Seo } from "astro-seo-meta";
 import { ViewTransitions } from 'astro:transitions';
 import { SITE_TITLE } from '../consts';
 import HeaderLink from './HeaderLink.astro';
 ---
 
 <header>
+	<Seo
+		title="Eq's Blog"
+		description="Equationzhao blog site"
+		keywords={["website", "blog", "astro"]}
+		icon="/favicon.svg"
+	/>
 	<nav>
 		<h2><a href="/" rel = prefetch-intent>{SITE_TITLE}</a>
 			<em><br> &nbsp;好的方程列出来有<br>&nbsp;诗の美感</em>
