@@ -12,7 +12,7 @@ tags: ["coding"]
 
 结果更新之后今天就收到一封邮件，说我 `PKGBIULD` 写错了
 
-![image-20230911232504719](/Users/equationzhao/blog/public/justfile-email.png)
+![image-20230911232504719](/justfile-email.png)
 
 好家伙，写的时候原来是 `($CARCH)`, 写的时候改成了 `X86_64` , 但是忘记加括号了 应该是 `('X86_64')`
 
