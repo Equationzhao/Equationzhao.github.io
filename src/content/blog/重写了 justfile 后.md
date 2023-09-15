@@ -1,6 +1,6 @@
 ---
 title: '重写了 justfile 后...'
-pubDate: 2023-09-11
+pubDate: 2023-09-12
 description: '构建系统'
 author: 'Eq'
 heroImage: 'https://bingw.jasonzeng.dev?index=12'
