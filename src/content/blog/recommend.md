@@ -14,3 +14,5 @@ tags: ["star"]
 -   [🌍 max's zone](https://blog.maxxsoft.net)
 
 -   [🏷 标签超市](https://tags.novelai.dev)
+
+-   [📮 raft动画](http://thesecretlivesofdata.com/raft/)
