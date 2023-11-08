@@ -16,3 +16,5 @@ tags: ["star"]
 -   [🏷 标签超市](https://tags.novelai.dev)
 
 -   [📮 raft动画](http://thesecretlivesofdata.com/raft/)
+
+-   [poe ai](https://poe.com)
