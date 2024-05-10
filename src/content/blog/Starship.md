@@ -377,7 +377,7 @@ disabled = false
 一键安装主题
 
 ```bash
-curl https://raw.githubusercontent.com/Equationzhao/shell-theme/main/catppuccin-like-starship.sh| sh
+curl https://raw.githubusercontent.com/Equationzhao/shell-theme/main/catppuccin-like-starship.sh | sh
 ```
 
 ## 总结
