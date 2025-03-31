@@ -19,9 +19,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout your repository using git
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Install, build, and upload your site
-        uses: withastro/action@v0
+        uses: withastro/action@v4
         # with:
             # path: . # 存储库中 Astro 项目的根位置。（可选）
             # node-version: 16 # 用于构建站点的特定 Node.js 版本，默认为 16。（可选）
